@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<robot name="my_robot_arm">
+
+  <!--world-->
+  <link name="world" />
+
+  <!--worldとベースリンクを繋ぐジョイント-->
+  <joint name="fixed" type="fixed">
+    <parent link="world" />
+    <child link="base_link" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+  </joint>
+
+  <!--ベースリンク-->
+  <link name="base_link">
+    <!--可視化情報-->
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.05" />
+      </geometry>
+      <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0" />
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.025" />
+    </visual>
+
+    <!--衝突属性-->
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 0.05" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.025" />
+    </collision>
+
+    <!--慣性属性-->
+    <inertial>
+      <mass value="1.0" />
+      <origin rpy="0 0 0" xyz="0 0 0.025" />
+      <inertia ixx="0.00354" ixy="0" ixz="0" iyy="0.00354" iyz="0" izz="0.00667" />
+    </inertial>
+  </link>
+
+  <!--ベースリンクと胴体を繋ぐジョイント-->
+  <joint name="hip" type="revolute">
+    <parent link="base_link" />
+    <child link="torso" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.05" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="0.5293" velocity="6.159937255" />
+  </joint>
+
+  <!--胴体-->
+  <link name="torso">
+    <!--可視化情報-->
+    <visual>
+      <geometry>
+        <cylinder length="0.5" radius="0.05" />
+      </geometry>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0.25" />
+    </visual>
+
+    <!--衝突属性-->
+    <collision>
+      <geometry>
+        <cylinder length="0.5" radius="0.05" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.25" />
+    </collision>
+
+    <!--慣性属性-->
+    <inertial>
+      <mass value="1.0" />
+      <origin rpy="0 0 0" xyz="0 0 0.25" />
+      <inertia ixx="0.02146" iyy="0.02146" izz="0.00125" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+  </link>
+
+  <!--胴体と上腕を繋ぐジョイント-->
+  <joint name="shoulder" type="revolute">
+    <parent link="torso" />
+    <child link="upper_arm" />
+    <origin rpy="0 0 0" xyz="0.0 -0.1 0.45" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="0.5293" velocity="6.159937255" />
+  </joint>
+
+  <!--上腕-->
+  <link name="upper_arm">
+    <!--可視化情報-->
+    <visual>
+      <geometry>
+        <cylinder length="0.4" radius="0.05" />
+      </geometry>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+    </visual>
+
+    <!--衝突属性-->
+    <collision>
+      <geometry>
+        <cylinder length="0.4" radius="0.05" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+    </collision>
+
+    <!--慣性属性-->
+    <inertial>
+      <mass value="1.0" />
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+      <inertia ixx="0.01396" iyy="0.01396" izz="0.00125" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+  </link>
+
+  <!--上腕と下腕を繋ぐジョイント-->
+  <joint name="elbow" type="revolute">
+    <parent link="upper_arm" />
+    <child link="lower_arm" />
+    <origin rpy="0 0 0" xyz="0.0 0.1 0.35" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="0.5293" velocity="6.159937255" />
+  </joint>
+
+  <!--下腕-->
+  <link name="lower_arm">
+    <!--可視化情報-->
+    <visual>
+      <geometry>
+        <cylinder length="0.4" radius="0.05" />
+      </geometry>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+    </visual>
+
+    <!--衝突属性-->
+    <collision>
+      <geometry>
+        <cylinder length="0.4" radius="0.05" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+    </collision>
+
+    <!--慣性属性-->
+    <inertial>
+      <mass value="1.0" />
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+      <inertia ixx="0.01396" iyy="0.01396" izz="0.00125" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+  </link>
+
+  <!--下腕と手を繋ぐジョイント-->
+  <joint name="wrist" type="revolute">
+    <parent link="lower_arm" />
+    <child link="hand" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.425" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="0.5293" velocity="6.159937255" />
+  </joint>
+
+  <!--手-->
+  <link name="hand">
+    <!--可視化情報-->
+    <visual>
+      <geometry>
+        <cylinder length="0.15" radius="0.05" />
+      </geometry>
+      <material name="white" />
+      <origin rpy="0 1.5708 0" xyz="0.0 0.0 0.0" />
+    </visual>
+
+    <!--衝突属性-->
+    <collision>
+      <geometry>
+        <cylinder length="0.15" radius="0.05" />
+      </geometry>
+      <origin rpy="0 1.5708 0" xyz="0.0 0.0 0.0" />
+    </collision>
+
+    <!--慣性属性-->
+    <inertial>
+      <mass value="1.0" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <inertia ixx="0.00250" iyy="0.00250" izz="0.00125" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+  </link>
+</robot>
