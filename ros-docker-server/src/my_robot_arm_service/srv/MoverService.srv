@@ -1,3 +1,0 @@
-MyRobotArmMoveitJoints joints_input
----
-moveit_msgs/RobotTrajectory trajectory

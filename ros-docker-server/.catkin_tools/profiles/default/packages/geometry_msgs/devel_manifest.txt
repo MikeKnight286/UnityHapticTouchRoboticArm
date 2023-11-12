@@ -1,5 +1,0 @@
-geometry_msgs
-/home/ubuntu/catkin_ws/devel/.private/geometry_msgs/cmake.lock /home/ubuntu/catkin_ws/devel/./cmake.lock
-/home/ubuntu/catkin_ws/devel/.private/geometry_msgs/lib/pkgconfig/geometry_msgs.pc /home/ubuntu/catkin_ws/devel/lib/pkgconfig/geometry_msgs.pc
-/home/ubuntu/catkin_ws/devel/.private/geometry_msgs/share/geometry_msgs/cmake/geometry_msgsConfig-version.cmake /home/ubuntu/catkin_ws/devel/share/geometry_msgs/cmake/geometry_msgsConfig-version.cmake
-/home/ubuntu/catkin_ws/devel/.private/geometry_msgs/share/geometry_msgs/cmake/geometry_msgsConfig.cmake /home/ubuntu/catkin_ws/devel/share/geometry_msgs/cmake/geometry_msgsConfig.cmake
